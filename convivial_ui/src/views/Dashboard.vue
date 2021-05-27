@@ -28,10 +28,6 @@
 </template>
 
 <style scoped>
-:root {
-  --input-padding-x: 1.5rem;
-  --input-padding-y: 0.75rem;
-}
 .dashboard{
     padding-top: 5rem;
     padding-left: 5rem;

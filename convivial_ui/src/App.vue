@@ -2,6 +2,7 @@
   <div>
     <div class="hidden" v-if="isLogged">
       <vs-sidebar class="sidebar"
+        fixed
         absolute
         hover-expand
         reduce
