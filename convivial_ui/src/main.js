@@ -5,10 +5,16 @@ import store from './store'
 import axios from 'axios'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
-import 'material-icons/css/material-icons.css'
+import 'boxicons'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(Vuesax)
+
 Vue.config.productionTip = false
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 new Vue({
   router,

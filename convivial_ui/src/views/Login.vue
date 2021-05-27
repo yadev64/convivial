@@ -1,19 +1,30 @@
 <template>
-  <div class="center">
-    <vs-card></vs-card>
-    <form @submit.prevent="login">
-      <vs-input
-        primary
-        v-model="email"
-        placeholder="Email"/>
+  <div class="login-form">
+        <form @submit.prevent="login">
+            <h2>Login</h2>
+            <div class="form-group">
+              <vs-input block
+              primary class="form-control"
+              v-model="email"
+              placeholder="Email"/>
+            </div>
 
-      <vs-input type = password
-        primary
-        v-model="password"
-        placeholder="Password"/>
-      <vs-button type="submit">Login</vs-button>
-    </form>
-  </div>
+            <div class="form-group">
+              <vs-input block type = password
+                primary class="form-control"
+                v-model="password"
+                placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <vs-button block type="submit" animation-type="vertical">
+                Login
+                <template #animate >
+                  Let's go!
+                </template>
+              </vs-button>
+            </div>
+          </form>
+    </div>
 </template>
 
 <script>
@@ -33,7 +44,7 @@ export default {
           password: this.password
         })
         .then(() => {
-          this.$router.push({ name: 'About' })
+          this.$router.push({ name: 'Dashboard' })
         })
         .catch(err => {
           console.log(err)
@@ -42,3 +53,37 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .login-form {
+  height:1000px;
+  background: linear-gradient(-45deg, #00e1ff, #1100ff, #23a6d5, #00ffc3);
+  background-size:cover;
+  position:relative;
+}
+
+.login-form form {
+  text-align: center;
+  max-width:320px;
+  width:90%;
+  background-color:#ffffff;
+  padding:40px;
+  border-radius:4px;
+  transform:translate(-50%, -50%);
+  position:absolute;
+  top:50%;
+  left:50%;
+  color:rgb(0, 0, 0);
+  box-shadow:3px 3px 4px rgba(255, 249, 249, 0.2);
+}
+
+.login-form form .form-control {
+  background:none;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+}
+
+</style>

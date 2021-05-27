@@ -1,21 +1,46 @@
 <template>
-  <div class="login-form">
+  <div class="new-event">
         <form @submit.prevent="login">
-            <h2>Login</h2>
+            <h2>New event</h2>
+            <p>Let's get started!</p>
             <div class="form-group">
-              <vs-input block
+              <vs-input
               primary class="form-control"
               v-model="email"
               placeholder="Email"/>
             </div>
 
             <div class="form-group">
-              <vs-input block type = password
+              <vs-input type = password
                 primary class="form-control"
                 v-model="password"
                 placeholder="Password"/>
             </div>
-            <div class="form-group"><vs-button block type="submit">Login</vs-button></div></form>
+            <div class="form-group">
+              <vs-input type = password
+                primary class="form-control"
+                v-model="password"
+                placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <vs-input type = password
+                primary class="form-control"
+                v-model="password"
+                placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <vs-input type = password
+                primary class="form-control"
+                v-model="password"
+                placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <vs-input type = password
+                primary class="form-control"
+                v-model="password"
+                placeholder="Password"/>
+            </div>
+            <div class="form-group"><vs-button type="submit">Login</vs-button></div></form>
     </div>
 </template>
 
@@ -47,18 +72,16 @@ export default {
 </script>
 
 <style scoped>
-
-.login-form{
+  .new-event {
   height:1000px;
-  /* background: rgb(233, 245, 255); */
-  background: linear-gradient(-45deg, #00e1ff, #1100ff, #23a6d5, #00ffc3);
+  background: rgb(233, 245, 255);
   background-size:cover;
   position:relative;
 }
 
-.login-form form {
+.new-event form {
   text-align: center;
-  max-width:320px;
+  max-width:1000px;
   width:90%;
   background-color:#ffffff;
   padding:40px;
@@ -71,7 +94,7 @@ export default {
   box-shadow:3px 3px 4px rgba(255, 249, 249, 0.2);
 }
 
-.login-form form .form-control {
+.new-event form .form-control {
   background:none;
   border:none;
   border-radius:0;

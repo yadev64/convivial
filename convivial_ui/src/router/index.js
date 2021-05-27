@@ -21,7 +21,34 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
+    meta: {
+      auth: false
+    },
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '../views/Dashboard.vue')
+  },
+  {
+    path: '/newevent',
+    name: 'NewEvent',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '../views/NewEvent.vue')
+  },
+  {
+    path: '/reports',
+    name: 'Reports',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '../views/Reports.vue')
   }
 ]
 
@@ -33,6 +60,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('user')
+  if (to.name === 'Login' && loggedIn) {
+    next({ name: 'Dashboard' })
+    return
+  }
 
   if (to.matched.some(record => record.meta.auth) && !loggedIn) {
     next('/login')
