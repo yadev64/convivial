@@ -2,8 +2,6 @@
   <div>
     <div class="hidden" v-if="isLogged">
       <vs-sidebar class="sidebar"
-        fixed
-        absolute
         hover-expand
         reduce
         v-model="active"
@@ -83,7 +81,7 @@ body {
   );
   margin-top: 50px;
   margin-left: 100px;
-  font-family: Avenir, sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 .image {
@@ -93,6 +91,7 @@ body {
 
 .sidebar{
   padding-top: 50px;
+  position: fixed;
 }
 
 .center {
