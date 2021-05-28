@@ -1,52 +1,41 @@
 <template>
     <div>
-    <b-row>
-      <b-col cols=8>
-        <h2>Trending events</h2>
-      </b-col>
-      <b-col cols=4>
-      <h2>Total revenue</h2>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols=8>
-        <vs-card-group>
-    <vs-card v-for="card in cards" :key="card.title" @click="handleClick">
-      <template #title>
-        <h3>{{card.title}}</h3>
-      </template>
-      <template #img>
-        <img :src="card.img" alt="">
-      </template>
-      <template #text>
-        <p>
-          {{card.location}}
-        </p>
-        <p>
-          {{card.desc}}
-        </p>
-      </template>
-      <template #interactions>
-        <vs-button v-if="card.t_type" warn icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button v-if="!card.t_type" icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button class="btn-chat" shadow primary>
-          <box-icon name='calendar' ></box-icon>
-          <span class="span">
-            {{card.e_date}}
-          </span>
-        </vs-button>
-      </template>
-    </vs-card>
-  </vs-card-group>
-      </b-col>
-      <b-col cols=4>
-
-      </b-col>
-    </b-row>
+        <b-row>
+            <b-col>
+                <vs-card-group>
+                    <vs-card v-for="card in cards" :key="card.title" @click="handleClick">
+                        <template #title>
+                            <h3>{{card.title}}</h3>
+                        </template>
+                        <template #img>
+                            <img :src="card.img" alt="">
+                        </template>
+                        <template #text>
+                            <p>
+                            {{card.location}}
+                            </p>
+                            <p>
+                            {{card.desc}}
+                            </p>
+                        </template>
+                        <template #interactions>
+                            <vs-button v-if="card.t_type" warn icon>
+                                <i class='bx bx-dollar-circle' ></i>
+                            </vs-button>
+                            <vs-button v-if="!card.t_type" icon>
+                                <i class='bx bx-dollar-circle' ></i>
+                            </vs-button>
+                            <vs-button class="btn-chat" shadow primary>
+                                <box-icon name='calendar' ></box-icon>
+                                <span class="span">
+                                    {{card.e_date}}
+                                </span>
+                            </vs-button>
+                        </template>
+                    </vs-card>
+                </vs-card-group>
+            </b-col>
+        </b-row>
     </div>
 </template>
 
@@ -132,6 +121,6 @@ export default {
 }
 
 .dashboard h2{
-  padding-left: 5rem;
+    padding-left: 5rem;
 }
 </style>

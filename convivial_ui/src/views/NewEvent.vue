@@ -7,6 +7,12 @@
 
             <div>
 
+                <div v-if="previewImage==null"
+                class="imagePreviewWrapper"
+                :style="{ 'background-image': `url(${default_img})` }"
+                @click="selectImage">
+                </div>
+
                 <div v-if="previewImage!=null"
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"
@@ -220,7 +226,8 @@
                       <h3>{{e_title}}</h3>
                     </template>
                     <template #img>
-                      <img :src=previewImage alt="">
+                      <img v-if="previewImage!= null" :src=previewImage alt="">
+                      <img v-else :src=default_img alt="">
                     </template>
                     <template #text>
                       <p class="overflow">
@@ -254,6 +261,7 @@
 export default {
   data () {
     return {
+      default_img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
       previewImage: null,
       e_title: '',
       e_desc: '',
@@ -313,7 +321,6 @@ label {
    cursor: pointer;
    color: blue;
    font-size: 10px;
-   margin-left: 10px;
    margin-left: 10px;
 }
 

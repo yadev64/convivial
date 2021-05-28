@@ -39,10 +39,8 @@
 
     <div id="nav" class="center examplex">
       <vs-navbar center-collapsed fixed shadow>
-        <template #default>
           <h4>CONVIVIAL</h4>
-          <!-- <img src="assets/conv.png" /> -->
-        </template>
+          <!-- <img src="assets/logo.png" /> -->
         <template #right>
           <vs-button flat to="/login" v-if="!isLogged">Login</vs-button>
           <vs-button @click="logout()" v-if="isLogged">Logout</vs-button>
