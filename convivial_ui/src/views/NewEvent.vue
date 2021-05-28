@@ -6,6 +6,7 @@
           <form @submit.prevent="login">
 
             <div>
+
                 <div v-if="previewImage!=null"
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"

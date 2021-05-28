@@ -72,7 +72,9 @@ export default {
 </script>
 
 <style>
-body {
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
   min-height: 95vh;
   background-image: radial-gradient(
     circle 621px at 25.3% 13.8%,
@@ -80,7 +82,6 @@ body {
     rgba(233, 245, 255, 1) 90%
   );
   margin-top: 50px;
-  margin-left: 100px;
   font-family: Poppins, sans-serif;
 }
 
