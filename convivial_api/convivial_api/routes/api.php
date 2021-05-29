@@ -23,7 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [AuthController::class, 'register']);
-
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
@@ -35,3 +34,7 @@ Route::get('/getsalesoverview', 'Api\ReportsController@getSalesOverview');
 Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
 Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
 Route::get('/getbestseller', 'Api\ReportsController@getBestSellers');
+Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
+Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
+Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
+Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');
