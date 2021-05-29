@@ -28,3 +28,6 @@ Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/home', [AuthController::class, 'home']);
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
+Route::post('/createnewevent', 'Api\NewEventController@createNewEvent');
+Route::post('/createnewticket', 'Api\NewTicketController@createNewTicket');
+
