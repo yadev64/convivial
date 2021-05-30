@@ -3,12 +3,16 @@
         <b-row>
             <b-col>
                 <vs-card-group>
-                    <vs-card v-for="card in cards" :key="card.e_name" @click="handleClick">
+                    <vs-card v-for="card in cards" :key="card.e_name">
                         <template #title>
+                            <router-link class="routertext" :to="{ name: 'Event', params: { id: card.event_id } }">
                             <h3>{{card.e_name}}</h3>
+                            </router-link>
                         </template>
                         <template #img>
+                            <router-link class="routertext" :to="{ name: 'Event', params: { id: card.event_id } }">
                             <img :src="card.e_image_url" alt="">
+                            </router-link>
                         </template>
                         <template #text>
                             <p>
@@ -47,7 +51,7 @@
 
 <script>
 
-const url = 'http://localhost:8000/api/gettrendingevents'
+const url = 'http://localhost:8000/api/getfunevents'
 
 export default {
   data () {
@@ -63,19 +67,6 @@ export default {
   },
 
   methods: {
-    handleClick () {
-      this.$store
-        .dispatch('login', {
-          email: this.email,
-          password: this.password
-        })
-        .then(() => {
-          this.$router.push({ name: 'Trending' })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
   }
 }
 </script>
@@ -88,6 +79,11 @@ export default {
 
 .dashboard h2{
     padding-left: 5rem;
+}
+
+.routertext h3{
+    color: rgb(42, 81, 117);
+    text-decoration: none;
 }
 
 .overflow{

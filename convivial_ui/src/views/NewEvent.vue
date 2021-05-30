@@ -3,17 +3,17 @@
         <b-row>
           <b-col cols=8>
         <div class="new-event">
-          <form @submit.prevent="login">
+          <form @submit.prevent="pushData">
 
             <div>
 
-                <div v-if="previewImage==null"
+                <!-- <div v-if="previewImage==null"
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${default_img})` }"
                 @click="selectImage">
-                </div>
+                </div> -->
 
-                <div v-if="previewImage!=null"
+                <div
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"
                 @click="selectImage">
@@ -67,17 +67,37 @@
                     </div>
                 </b-col>
             </b-row>
-
             <b-row>
                 <b-col cols="4">
                     <p class="field-name">Date</p>
                 </b-col>
-                <b-col cols="3">
+                <b-col cols="8">
                     <div class="form-group">
                         <vs-input block type="date"
                         primary class="form-control"
                         v-model="e_date"
                         />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Catagory</p>
+                </b-col>
+                <b-col cols="3">
+                    <div class="center con-selects form-group">
+                    <vs-select
+                        placeholder="Select"
+                        v-model="e_catagory"
+                    >
+                        <vs-option label="fun" value="fun">
+                        Fun
+                        </vs-option>
+                        <vs-option label="sports" value="sports">
+                        Sports
+                        </vs-option>
+                    </vs-select>
                     </div>
                 </b-col>
                 <b-col cols="2">
@@ -258,31 +278,48 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      default_img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-      previewImage: null,
+      previewImage: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
       e_title: '',
       e_desc: '',
+      e_organizer: '',
       e_location: '',
-      e_duration: null,
+      e_duration: 0,
+      e_catagory: '',
       e_date: null,
       t_type: false,
-      n_price: null,
-      s_price: null,
-      g_price: null,
-      p_price: null
+      n_price: 0,
+      s_price: 0,
+      g_price: 0,
+      p_price: 0,
+      message: ''
     }
   },
 
   methods: {
-    login () {
-      this.$store
-        .dispatch('login', {
-          email: this.email,
-          password: this.password
-        })
+    pushData () {
+      const content = {
+        e_name: this.e_title,
+        e_desc: this.e_desc,
+        e_organizer: this.e_organizer,
+        e_catagory: this.e_catagory,
+        e_location: this.e_location,
+        e_duration: this.e_duration,
+        e_date: this.e_date,
+        t_type: this.t_type,
+        normal: this.n_price,
+        silver: this.s_price,
+        gold: this.g_price,
+        platinum: this.p_price,
+        e_image_url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+      }
+      console.log(content)
+      axios.post('http://localhost:8000/api/createnewevent', content)
+        .then(response => { this.message = response.data.message })
         .then(() => {
           this.$router.push({ name: 'Dashboard' })
         })

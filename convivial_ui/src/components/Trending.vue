@@ -3,27 +3,37 @@
         <b-row>
             <b-col>
                 <vs-card-group>
-                    <vs-card v-for="card in cards" :key="card.title" @click="handleClick">
+                    <vs-card v-for="card in cards" :key="card.e_name">
                         <template #title>
-                            <h3>{{card.title}}</h3>
+                            <router-link class="routertext" :to="{ name: 'Event', params: { id: card.event_id } }">
+                            <h3>{{card.e_name}}</h3>
+                            </router-link>
                         </template>
                         <template #img>
-                            <img :src="card.img" alt="">
+                            <router-link :to="{ name: 'Event', params: { id: card.event_id } }">
+                            <img :src="card.e_image_url" alt="">
+                            </router-link>
                         </template>
                         <template #text>
                             <p>
-                            {{card.location}}
+                            {{card.e_location}}
                             </p>
-                            <p>
-                            {{card.desc}}
+                            <p class="overflow">
+                            {{card.e_desc}}
                             </p>
                         </template>
                         <template #interactions>
                             <vs-button v-if="card.t_type" warn icon>
                                 <i class='bx bx-dollar-circle' ></i>
+                                <span class="span">
+                                    {{card.total_revenue}}
+                                </span>
                             </vs-button>
                             <vs-button v-if="!card.t_type" icon>
                                 <i class='bx bx-dollar-circle' ></i>
+                                <span class="span">
+                                    {{card.total_revenue}}
+                                </span>
                             </vs-button>
                             <vs-button class="btn-chat" shadow primary>
                                 <box-icon name='calendar' ></box-icon>
@@ -40,60 +50,20 @@
 </template>
 
 <script>
+
+const url = 'http://localhost:8000/api/gettrendingevents'
+
 export default {
   data () {
     return {
-      cards: [
-        {
-          title: 'Sundown Party',
-          t_type: true,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1611244806964-91d204d4a2a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'
-        },
-        {
-          title: 'Tomorrowland',
-          t_type: false,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Sundown Party',
-          t_type: false,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1611244806964-91d204d4a2a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'
-        },
-        {
-          title: 'Tomorrowland',
-          t_type: true,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        },
-        {
-          title: 'Sundown Party',
-          t_type: false,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1611244806964-91d204d4a2a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'
-        },
-        {
-          title: 'Tomorrowland',
-          t_type: true,
-          e_date: '2012-04-23',
-          location: 'Mountain view, CA ',
-          desc: 'A sundowner party is a social event usually from 5pm-8pm, where friends gather, sip drinks, groove to music and admire the sunset. Originally ...',
-          img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-        }
-      ]
+      cards: []
     }
+  },
+  mounted () {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => { this.cards = data })
+      .catch(error => console.log(error.message))
   },
 
   methods: {
@@ -120,7 +90,22 @@ export default {
     padding-left: 5rem;
 }
 
+.routertext h3{
+    color: rgb(42, 81, 117);
+    text-decoration: none;
+}
+
 .dashboard h2{
     padding-left: 5rem;
+}
+
+.overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;
+    max-height: 32px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 </style>

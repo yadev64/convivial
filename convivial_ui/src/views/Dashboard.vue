@@ -13,49 +13,7 @@
       <Trending></Trending>
     </b-col>
       <b-col cols=3>
-        <b-row>
-          <b-col>
-            <br>
-            <vs-card>
-              <template #title>
-                <h3>Revenue : ${{total_revenue}}</h3>
-              </template>
-              <template #img>
-                <img :src=previewImage alt="">
-              </template>
-              <template #text>
-                <p class="overflow">
-                  This week: ${{weekly_revenue}}
-                </p>
-              </template>
-            </vs-card>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <br>
-            <h3>Best selling</h3>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <br>
-            <vs-card>
-              <template #title>
-                <h3>Best selling: {{best_event}}</h3>
-              </template>
-              <template #img>
-                <img :src=previewImage alt="">
-              </template>
-              <template #text>
-                <p class="overflow">
-                  Trailing: ${{second_event}}
-                </p>
-              </template>
-            </vs-card>
-          </b-col>
-        </b-row>
-
+          <RevenueReport></RevenueReport>
       </b-col>
     </b-row>
     <b-row>
@@ -65,38 +23,7 @@
     </b-row>
     <b-row>
       <b-col cols=12>
-        <vs-card-group>
-    <vs-card v-for="card in cards" :key="card.title" @click="handleClick">
-      <template #title>
-        <h3>{{card.title}}</h3>
-      </template>
-      <template #img>
-        <img :src="card.img" alt="">
-      </template>
-      <template #text>
-        <p>
-          {{card.location}}
-        </p>
-        <p>
-          {{card.desc}}
-        </p>
-      </template>
-      <template #interactions>
-        <vs-button v-if="card.t_type" warn icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button v-if="!card.t_type" icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button class="btn-chat" shadow primary>
-          <box-icon name='calendar' ></box-icon>
-          <span class="span">
-            {{card.e_date}}
-          </span>
-        </vs-button>
-      </template>
-    </vs-card>
-  </vs-card-group>
+        <SportsCards></SportsCards>
       </b-col>
     </b-row>
     <b-row>
@@ -106,39 +33,8 @@
     </b-row>
     <b-row>
       <b-col cols=12>
-        <vs-card-group>
-    <vs-card v-for="card in cards" :key="card.title" @click="handleClick">
-      <template #title>
-        <h3>{{card.title}}</h3>
-      </template>
-      <template #img>
-        <img :src="card.img" alt="">
-      </template>
-      <template #text>
-        <p>
-          {{card.location}}
-        </p>
-        <p>
-          {{card.desc}}
-        </p>
-      </template>
-      <template #interactions>
-        <vs-button v-if="card.t_type" warn icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button v-if="!card.t_type" icon>
-          <i class='bx bx-dollar-circle' ></i>
-        </vs-button>
-        <vs-button class="btn-chat" shadow primary>
-          <box-icon name='calendar' ></box-icon>
-          <span class="span">
-            {{card.e_date}}
-          </span>
-        </vs-button>
-      </template>
-    </vs-card>
-  </vs-card-group>
-      </b-col>
+          <FunCards></FunCards>
+</b-col>
     </b-row>
 
   </div>
@@ -146,10 +42,16 @@
 
 <script>
 import Trending from '@/components/Trending.vue'
+import RevenueReport from '@/components/RevenueReport.vue'
+import SportsCards from '@/components/SportsCards.vue'
+import FunCards from '@/components/FunCards.vue'
 
 export default {
   components: {
-    Trending
+    Trending,
+    RevenueReport,
+    SportsCards,
+    FunCards
   },
   data () {
     return {

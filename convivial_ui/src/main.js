@@ -15,6 +15,7 @@ Vue.use(Vuesax)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(axios)
 
 new Vue({
   router,

@@ -4,70 +4,50 @@
         <b-row>
             <b-col>
                 <h2>Sales</h2>
-                <h3>{{t_sold}}</h3>
+                <h3>{{report_data.total_sold}}</h3>
             </b-col>
             <b-col>
                 <h2>Revenue</h2>
-                <h3>${{t_revenue}}</h3>
+                <h3>${{report_data.total_revenue}}</h3>
             </b-col>
         </b-row>
         <br>
         <b-row>
-            <b-col>
-                <h5>Type</h5>
-            </b-col>
-            <b-col>
-                <h5>Normal</h5>
-            </b-col>
-            <b-col>
-                <h5>Silver</h5>
-            </b-col>
-            <b-col>
-                <h5>Gold</h5>
-            </b-col>
-            <b-col>
-                <h5>Platinum</h5>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <p>Count</p>
-            </b-col>
-            <b-col>
-                <p>475</p>
-            </b-col>
-            <b-col>
-                <p>1213</p>
-            </b-col>
-            <b-col>
-                <p>230</p>
-            </b-col>
-            <b-col>
-                <p>320</p>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <p>Revenue</p>
-            </b-col>
-            <b-col>
-                <p>6454</p>
-            </b-col>
-            <b-col>
-                <p>7563</p>
-            </b-col>
-            <b-col>
-                <p>5355</p>
-            </b-col>
-            <b-col>
-                <p>6463</p>
-            </b-col>
+            <vs-table striped>
+                <template #thead>
+                <vs-tr>
+                    <vs-th>Type</vs-th>
+                    <vs-th>Normal</vs-th>
+                    <vs-th>Silver</vs-th>
+                    <vs-th>Gold</vs-th>
+                    <vs-th>Platinum</vs-th>
+                </vs-tr>
+                </template>
+                <template #tbody>
+                <vs-tr>
+                    <vs-td>Count</vs-td>
+                    <vs-td>{{ report_data.n_count }}</vs-td>
+                    <vs-td>{{ report_data.s_count }}</vs-td>
+                    <vs-td>{{ report_data.g_count }}</vs-td>
+                    <vs-td>{{ report_data.p_count }}</vs-td>
+                </vs-tr>
+                <vs-tr>
+                    <vs-td>Revenue</vs-td>
+                    <vs-td>{{ report_data.n_rev }}</vs-td>
+                    <vs-td>{{ report_data.s_rev }}</vs-td>
+                    <vs-td>{{ report_data.g_rev }}</vs-td>
+                    <vs-td>{{ report_data.p_rev }}</vs-td>
+                </vs-tr>
+                </template>
+            </vs-table>
         </b-row>
     </form>
   </div>
 </template>
 
 <script>
+const url = 'http://localhost:8000/api/getsalesoverview'
+
 export default {
   name: 'RevenueReport',
   props: {
@@ -75,9 +55,14 @@ export default {
   },
   data () {
     return {
-      t_sold: 3752,
-      t_revenue: 32752
+      report_data: []
     }
+  },
+  mounted () {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => { this.report_data = data })
+      .catch(error => console.log(error.message))
   }
 }
 </script>

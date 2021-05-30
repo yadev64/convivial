@@ -7,23 +7,24 @@
 
             <b-row>
               <b-col>
-                <div v-if="previewImage!=null"
+                <div v-if="event_data.e_image_url!=null"
                 class="imagePreviewWrapper"
-                :style="{ 'background-image': `url(${previewImage})` }"
-                @click="selectImage">
+                :style="{ 'background-image': `url(${event_data.e_image_url})` }"
+                >
                 </div>
               </b-col>
             </b-row>
             <b-row>
               <b-col cols=7>
-                <h2>{{e_title}}</h2>
-                <p>{{e_location}}</p>
-                <p>{{e_date}}</p>
+                <h2>{{event_data.e_name}}</h2>
+                <p>{{event_data.e_location}}</p>
+                <p>{{event_data.e_date}}</p>
+                <p>{{event_data.e_organizer}}</p>
                 <br>
-                <p>{{e_desc}}</p>
+                <p>{{event_data.e_desc}}</p>
               </b-col>
               <b-col cols=5>
-                <form class="purchase-form" action="">
+                <form class="purchase-form" @submit.prevent="pushData">
                   <b-row>
                     <b-col>
                       <h3>Buy tickets</h3>
@@ -64,7 +65,7 @@
                     </b-col>
                   </b-row>
                   <br>
-                  <b-row v-if="t_type">
+                  <b-row v-if="event_data.t_type">
                     <b-col>
                       <vs-radio warn v-model="t_select_type" val='1'>
                         Silver
@@ -84,7 +85,7 @@
                   <br>
                   <b-row>
                     <b-col>
-                      <h4>Total cost: {{calculateCost()}}</h4>
+                      <h4>Total cost: {{total_cost}}</h4>
                     </b-col>
                   </b-row>
                   <b-row>
@@ -108,53 +109,88 @@
 </template>
 
 <script>
+import axios from 'axios'
+var url = 'http://localhost:8000/api/geteventdata/'
+
 export default {
+  props: {
+    // event_id: Number
+  },
   data () {
     return {
-      previewImage: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-      e_title: 'TomorrowLand',
-      e_desc: 'We are delighted and grateful to hear that the Belgian Government has given a realistic perspective for large festivals in Belgium towards the end of the summer. We want to study the guidelines and parameters from the National Government in the next days, so that we can properly communicate the different scenarios and implications. \nWith a combination of vaccination and rapid testing at the door, we believe we can make Tomorrowland a safe place, which so many people have been looking forward to for so long. We will take every measure and guideline very seriously and apply all the right protocols.',
-      e_location: 'Mountain View, CA',
-      e_duration: 5,
-      e_date: '2012-04-23',
-      t_type: true,
-      n_price: 10,
-      s_price: 20,
-      g_price: 49,
-      p_price: 99,
-      t_select_type: null,
-      c_t_no: 1
+      event_id: null,
+      event_data: [],
+      c_name: '',
+      c_email: '',
+      c_phone: '',
+      // e_duration: 5,
+      t_select_type: '0',
+      c_t_no: 1,
+      n: 0,
+      s: 0,
+      g: 0,
+      p: 0,
+      total_cost: 0
     }
+  },
+  created () {
+    this.event_id = this.$route.params.id
+  },
+  beforeUpdate () {
+    this.calculateCost(this.event_data)
+  },
+  mounted () {
+    console.log(url + this.event_id)
+    fetch(url + this.event_id)
+      .then(response => response.json())
+      .then(data => { this.event_data = data })
+      // .then(calculateCost(this.event_data))
+      .catch(error => console.log(error.message))
+    this.assignValues(this.event_data)
   },
 
   methods: {
-    calculateCost () {
-      if (!this.t_type) {
-        return this.c_t_no * this.n_price
-      } else {
-        if (this.t_select_type == null) {
-          return 0
-        } else if (this.t_select_type === '1') {
-          return this.c_t_no * this.s_price
-        } else if (this.t_select_type === '2') {
-          return this.c_t_no * this.g_price
-        } else if (this.t_select_type === '3') {
-          return this.c_t_no * this.p_price
-        }
+    pushData () {
+      const content = {
+        c_name: this.c_name,
+        c_email: this.c_email,
+        c_phone: this.c_phone,
+        event_id: this.event_id,
+        t_type: parseInt(this.t_select_type),
+        no_of_tickets: this.c_t_no,
+        total_cost: this.total_cost
       }
-    },
-    login () {
-      this.$store
-        .dispatch('login', {
-          email: this.email,
-          password: this.password
-        })
+      console.log(content)
+      axios.post('http://localhost:8000/api/createnewticket', content)
+        .then(response => { this.message = response.data.message })
         .then(() => {
           this.$router.push({ name: 'Dashboard' })
         })
         .catch(err => {
           console.log(err)
         })
+    },
+
+    assignValues (data) {
+      this.n = data.n_val
+      this.s = data.s_val
+      this.g = data.g_val
+      this.p = data.p_val
+    },
+    calculateCost (eData) {
+      if (this.t_type === 0) {
+        this.total_cost = this.c_t_no * eData.n_val
+      } else {
+        if (this.t_select_type === null) {
+          this.total_cost = 0
+        } else if (this.t_select_type === '1') {
+          this.total_cost = this.c_t_no * eData.s_val
+        } else if (this.t_select_type === '2') {
+          this.total_cost = this.c_t_no * eData.g_val
+        } else if (this.t_select_type === '3') {
+          this.total_cost = this.c_t_no * eData.p_val
+        }
+      }
     },
     selectImage () {
       this.$refs.fileInput.click()

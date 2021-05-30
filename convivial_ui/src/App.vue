@@ -28,12 +28,12 @@
           </template>
           Reports
         </vs-sidebar-item>
-        <vs-sidebar-item id="about" to="/about" v-if="isLogged">
+        <!-- <vs-sidebar-item id="about" to="/about" v-if="isLogged">
           <template #icon>
             <box-icon name='cookie' ></box-icon>
           </template>
           Test ground
-        </vs-sidebar-item>
+        </vs-sidebar-item> -->
       </vs-sidebar>
     </div>
 
