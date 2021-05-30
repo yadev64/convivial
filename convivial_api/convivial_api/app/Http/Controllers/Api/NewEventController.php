@@ -36,10 +36,10 @@ class NewEventController extends Controller
 
         $cost->event_id = $event->id;
         $cost->t_type = $request->t_type;
-        $cost->normal = $request->t_normal;
-        $cost->silver = $request->t_silver;
-        $cost->gold = $request->t_gold;
-        $cost->platinum = $request->t_platinum;
+        $cost->normal = $request->normal;
+        $cost->silver = $request->silver;
+        $cost->gold = $request->gold;
+        $cost->platinum = $request->platinum;
         $cost->save();
 
         return response()->json([

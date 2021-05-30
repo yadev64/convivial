@@ -101,7 +101,7 @@ class ReportsController extends Controller
     public function getBestSellers(){
         $b_seller_object = new BestSeller();
         $best_seller = Sale::orderBy('total_revenue', 'DESC')
-        ->limit(2)
+        ->limit(1)
         ->get();
 
         foreach($best_seller as $s){

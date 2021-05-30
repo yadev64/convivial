@@ -31,31 +31,31 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
-Route::post('/createnewevent', [NewEventController::class, 'createNewEvent'])->middleware('auth:sanctum');
-Route::post('/createnewticket', [NewTicketController::class, 'createnewticket'])->middleware('auth:sanctum');
+// Route::post('/createnewevent', [NewEventController::class, 'createNewEvent'])->middleware('auth:sanctum');
+// Route::post('/createnewticket', [NewTicketController::class, 'createnewticket'])->middleware('auth:sanctum');
 
-Route::get('/getsalesoverview', [ReportsController::class, 'getSalesOverview'])->middleware('auth:sanctum');
-Route::get('/getsalesdetails', [ReportsController::class, 'getSalesDetails'])->middleware('auth:sanctum');
-Route::get('/getbookingdetails', [ReportsController::class, 'getBookingDetails'])->middleware('auth:sanctum');
-Route::get('/getbestseller', [ReportsController::class, 'getBestSellers'])->middleware('auth:sanctum');
+// Route::get('/getsalesoverview', [ReportsController::class, 'getSalesOverview'])->middleware('auth:sanctum');
+// Route::get('/getsalesdetails', [ReportsController::class, 'getSalesDetails'])->middleware('auth:sanctum');
+// Route::get('/getbookingdetails', [ReportsController::class, 'getBookingDetails'])->middleware('auth:sanctum');
+// Route::get('/getbestseller', [ReportsController::class, 'getBestSellers'])->middleware('auth:sanctum');
 
-Route::get('/gettrendingevents', [EventDataController::class, 'getTrendingEvents'])->middleware('auth:sanctum');
-Route::get('/geteventdata/{id}', [EventDataController::class, 'getEventData'])->middleware('auth:sanctum');
-Route::get('/getsportsevents', [EventDataController::class, 'getSportsEvents'])->middleware('auth:sanctum');
-Route::get('/getfunevents', [EventDataController::class, 'getFunEvents'])->middleware('auth:sanctum');
-
-
+// // Route::get('/gettrendingevents', [EventDataController::class, 'getTrendingEvents'])->middleware('auth:sanctum');
+// Route::get('/geteventdata/{id}', [EventDataController::class, 'getEventData'])->middleware('auth:sanctum');
+// Route::get('/getsportsevents', [EventDataController::class, 'getSportsEvents'])->middleware('auth:sanctum');
+// Route::get('/getfunevents', [EventDataController::class, 'getFunEvents'])->middleware('auth:sanctum');
 
 
-// Route::post('/createnewevent', 'Api\NewEventController@createNewEvent');
-// Route::post('/createnewticket', 'Api\NewTicketController@createNewTicket');
 
-// Route::get('/getsalesoverview', 'Api\ReportsController@getSalesOverview');
-// Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
-// Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
-// Route::get('/getbestseller', 'Api\ReportsController@getBestSellers');
 
-// Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
-// Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
-// Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
-// Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');
+Route::post('/createnewevent', 'Api\NewEventController@createNewEvent');
+Route::post('/createnewticket', 'Api\NewTicketController@createNewTicket');
+
+Route::get('/getsalesoverview', 'Api\ReportsController@getSalesOverview');
+Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
+Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
+Route::get('/getbestsellers', 'Api\ReportsController@getBestSellers');
+
+Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
+Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
+Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
+Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');
