@@ -17,6 +17,12 @@ Front end
  - [Axios](https://www.npmjs.com/package/axios) (handling api requests)
  - [VueX](https://vuex.vuejs.org/) (State management for user authentication)
 
+
+
+https://user-images.githubusercontent.com/21107275/120115645-4451b400-c1a2-11eb-97d8-fcf24340fa3a.mp4
+
+
+
 #Installation
 
 ##Step 1: Clone the repo
@@ -82,18 +88,18 @@ This will start the server and make the api end-points available.
 Available apis and usages:
 
 ```
-** - /createnewevent **       //Register a new event (**Post**)
-** - /createnewticket**       //Create a new ticket for a customer (**Post**)
-** - /getsalesoverview**      //**Get** an overview of the sales
-** - /getsalesdetails**       //**Get** detailed info about sales
-** - /getbookingdetails**     //**Get** detailed info on ticket purchases
-** - /getbestsellers**        //**Get** the name of the best selling event
-** - /gettrendingevents**     //**Get** the detailed list of the top 6 trending events
-** - /geteventdata/{id}**     //**Get** all details of a specific event (selected by passing the event ID as parameter)
-** - /getsportsevents**       //**Get** the detailed list of all the sports events in the DB
-** - /getfunevents**          //**Get** the detailed list of all the fun and family events in our DB
-** - /login**                 //Login and get the Bearer token (**Post**)
-** - /register**              //Register a new admin (**Post**)
+- /createnewevent        //Register a new event (Post)
+- /createnewticket       //Create a new ticket for a customer (Post)
+- /getsalesoverview      //Get an overview of the sales
+- /getsalesdetails       //Get detailed info about sales
+- /getbookingdetails     //Get detailed info on ticket purchases
+- /getbestsellers        //Get the name of the best selling event
+- /gettrendingevents     //Get the detailed list of the top 6 trending events
+- /geteventdata/{id}     //Get all details of a specific event (selected by passing the event ID as parameter)
+- /getsportsevents       //Get the detailed list of all the sports events in the DB
+- /getfunevents          //Get the detailed list of all the fun and family events in our DB
+- /login                 //Login and get the Bearer token (Post)
+- /register              //Register a new admin (Post)
 ```
 
 If you want, go on and try out these api on [Postman](https://www.postman.com/)
