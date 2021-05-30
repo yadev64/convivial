@@ -81,6 +81,7 @@ This will start the server and make the api end-points available.
 
 Available apis and usages:
 
+```
 ** - /createnewevent **       //Register a new event (**Post**)
 ** - /createnewticket**       //Create a new ticket for a customer (**Post**)
 ** - /getsalesoverview**      //**Get** an overview of the sales
@@ -93,6 +94,7 @@ Available apis and usages:
 ** - /getfunevents**          //**Get** the detailed list of all the fun and family events in our DB
 ** - /login**                 //Login and get the Bearer token (**Post**)
 ** - /register**              //Register a new admin (**Post**)
+```
 
 If you want, go on and try out these api on [Postman](https://www.postman.com/)
 
