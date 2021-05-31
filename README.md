@@ -119,7 +119,11 @@ Visit "**[localhost:8080](http://localhost:8080/login)**" and you'll be greated 
 
 Now, let's discuss the features of this platform and how to use it.
 
-At first, go to **login** page (localhost:8080/login). Here, login using your credentials. The default credentials are username: **john@gmail.com** password: **irisworld**
+At first, use Postman to call the /register api to create a new user (follow the attached image)
+
+![Screenshot 2021-05-31 at 3 02 33 PM](https://user-images.githubusercontent.com/21107275/120173026-427b0580-c221-11eb-9e2a-33869ee68c70.png)
+
+Then, go to **login** page (localhost:8080/login). Here, login using your credentials. 
 
 ![Screenshot 2021-05-30 at 10 01 27 PM](https://user-images.githubusercontent.com/21107275/120112922-a821b000-c195-11eb-9874-df3846100209.png)
 
