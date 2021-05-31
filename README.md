@@ -23,13 +23,13 @@ https://user-images.githubusercontent.com/21107275/120115645-4451b400-c1a2-11eb-
 
 
 
-#Installation
+# Installation
 
-##Step 1: Clone the repo
+## Step 1: Clone the repo
 
 After clonning the repo to your local machine, you'll find 2 directories inside the main folder. One is for the backend api (convivial_api) and the other is for the front end (convivial_ui)
 
-##Step 2: Environment setup & Installation
+## Step 2: Environment setup & Installation
 
 At first, let's setup the backend.
 For this, you need to install the following packages(just follow the associated links for installation guidelines):
@@ -56,7 +56,7 @@ Once this step is complete, go to the directory "convivial_ui" (The root dir of 
 
 This will automatically install all the necessary packages that are required by the app.
 
-##Step 3: Running the server
+## Step 3: Running the server
 
 Inorder to make the server up and work properly, we need to setup the database. For this:
  - Open the XAMPP manager and go to the Manage servers tab
@@ -104,7 +104,7 @@ Available apis and usages:
 
 If you want, go on and try out these api on [Postman](https://www.postman.com/)
 
-##Step 4: Running the front end
+## Step 4: Running the front end
 
 Previously, when we ran the command "npm install", it installed all the necessary packages to run the application.
 All we need to do now is to run the app. To do this, in your terminal, just run(make sure that your current directory is the root of this app):
@@ -115,7 +115,7 @@ Awesome! You did it! The app is now up and running.
 Visit "**[localhost:8080](http://localhost:8080/login)**" and you'll be greated with the login page.
 
 
-#User guidelines
+# User guidelines
 
 Now, let's discuss the features of this platform and how to use it.
 
@@ -155,4 +155,4 @@ On each event card, you can see an icon with a $ symbol in it. It shows the reve
  - User auth based api calls currently unsupported at the UI side. The backend supports it and is working.
  - Form validation is not implemented. Make sure that you enter all the necessary fields.
 
-*Wait for the next update for the bug fixes :)
+* Wait for the next update for the bug fixes :)
