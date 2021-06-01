@@ -62,11 +62,12 @@ class ReportsController extends Controller
             $sales_detail->e_name = $e->name;
             $sales_detail->e_organizer = $e->organizer;
             $sales_detail->e_date = $e->date;
-            $sales_detail->t_type = $e->t_type;
+            $sales_detail->t_type = $cost[0]->t_type;
             $sales_detail->n_rev = $sale[0]->n_sold * $cost[0]->normal;
             $sales_detail->s_rev = $sale[0]->s_sold * $cost[0]->silver;
             $sales_detail->g_rev = $sale[0]->g_sold * $cost[0]->gold;
             $sales_detail->p_rev = $sale[0]->p_sold * $cost[0]->platinum;
+            $sales_detail->total_revenue = $sales_detail->n_rev + $sales_detail->s_rev + $sales_detail->g_rev + $sales_detail->p_rev; 
 
             $salesList[] = $sales_detail;
         }

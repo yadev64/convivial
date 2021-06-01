@@ -36,14 +36,14 @@ const routes = [
   //   },
   //   component: () => import(/* webpackChunkName: "login" */ '../views/Event.vue')
   // },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    meta: {
-      auth: true
-    },
-    component: () => import(/* webpackChunkName: "login" */ '../views/Dashboard.vue')
-  },
+  // {
+  //   path: '/dashboard',
+  //   name: 'Dashboard',
+  //   meta: {
+  //     auth: true
+  //   },
+  //   component: () => import(/* webpackChunkName: "login" */ '../views/Dashboard.vue')
+  // },
   {
     path: '/newevent',
     name: 'NewEvent',

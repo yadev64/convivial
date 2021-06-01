@@ -16,7 +16,7 @@
           </template>
           New event
         </vs-sidebar-item>
-        <vs-sidebar-item id="dashboard" to="/dashboard" v-if="isLogged">
+        <vs-sidebar-item id="dashboard" to="/" v-if="isLogged">
           <template #icon>
             <box-icon name='home-smile'></box-icon>
           </template>
@@ -59,6 +59,11 @@ export default {
     ...mapGetters([
       'isLogged'
     ])
+  },
+  data () {
+    return {
+      active: null
+    }
   },
 
   methods: {

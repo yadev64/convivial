@@ -21,12 +21,13 @@
           <vs-td>{{ tr.e_name }}</vs-td>
           <vs-td>{{ tr.e_organizer }}</vs-td>
           <vs-td>{{ tr.e_date }}</vs-td>
-          <vs-td>{{ tr.t_type }}</vs-td>
+          <vs-td v-if="tr.t_type == 0">Normal</vs-td>
+          <vs-td v-if="tr.t_type == 1">Premium</vs-td>
           <vs-td>{{ tr.n_rev }}$</vs-td>
           <vs-td>{{ tr.s_rev }}$</vs-td>
           <vs-td>{{ tr.g_rev }}$</vs-td>
           <vs-td>{{ tr.p_rev }}$</vs-td>
-          <vs-td>{{ tr.total_rev }}$</vs-td>
+          <vs-td>{{ tr.total_revenue }}$</vs-td>
         </vs-tr>
       </template>
     </vs-table>

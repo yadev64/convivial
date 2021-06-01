@@ -16,24 +16,6 @@
             </vs-card>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            <br>
-            <vs-card>
-              <template #title>
-                <h3>Best selling: {{data[0].best_seller}}</h3>
-              </template>
-              <template #img>
-                <img :src=previewImage alt="">
-              </template>
-              <template #text>
-                <p class="overflow">
-                  Trailing: {{data[1].best_seller}}
-                </p>
-              </template>
-            </vs-card>
-          </b-col>
-        </b-row>
   </div>
 </template>
 
