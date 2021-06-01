@@ -178,7 +178,7 @@ export default {
       this.p = data.p_val
     },
     calculateCost (eData) {
-      if (this.t_type === 0) {
+      if (eData.t_type === 0) {
         this.total_cost = this.c_t_no * eData.n_val
       } else {
         if (this.t_select_type === null) {
