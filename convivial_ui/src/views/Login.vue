@@ -54,12 +54,17 @@ export default {
 }
 </script>
 
-<style scoped>
-  .login-form {
-  height:1000px;
-  background: linear-gradient(-45deg, #00e1ff, #1100ff, #23a6d5, #00ffc3);
-  background-size:cover;
-  position:relative;
+<style scopped>
+
+.login-form {
+  overflow-y: hidden;
+  background: linear-gradient(-45deg, #00e1ff, #1100ff, #23a6d5, #00ffc3) no-repeat center center fixed;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .login-form form {
