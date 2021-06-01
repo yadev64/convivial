@@ -162,7 +162,7 @@ export default {
         total_cost: this.total_cost
       }
       console.log(content)
-      axios.post('http://localhost:8000/api/createnewticket', content)
+      axios.post('http://localhost:8000/api/createnewticket', content, { headers })
         .then(response => { this.message = response.data.message })
         .then(() => {
           this.$router.push({ name: 'Dashboard' })

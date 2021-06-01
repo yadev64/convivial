@@ -62,7 +62,7 @@ export default {
   },
   data () {
     return {
-      active: null
+      active: 'dashboard'
     }
   },
 

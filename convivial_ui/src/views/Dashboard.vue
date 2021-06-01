@@ -9,10 +9,11 @@
       </b-col>
     </b-row>
     <b-row>
-    <b-col cols=8>
-      <Trending></Trending>
-    </b-col>
+      <b-col cols=8>
+          <Trending></Trending>
+      </b-col>
       <b-col cols=3>
+          <br>
           <RevenueReport></RevenueReport>
       </b-col>
     </b-row>
