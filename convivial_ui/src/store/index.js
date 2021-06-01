@@ -16,6 +16,8 @@ export default new Vuex.Store({
       state.user = userData
       localStorage.setItem('user', JSON.stringify(userData))
       axios.defaults.headers.common.Authorization = `Bearer ${userData.access_token}`
+      console.log('In mutation')
+      console.log(`Bearer ${userData.access_token}`)
     },
 
     clearUserData () {
@@ -30,6 +32,7 @@ export default new Vuex.Store({
         .post('/login', credentials)
         .then(({ data }) => {
           commit('setUserData', data)
+          console.log(axios.defaults.headers.common.Authorization)
         })
     },
 

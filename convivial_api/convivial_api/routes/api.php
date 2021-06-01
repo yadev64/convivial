@@ -35,6 +35,14 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/me', [AuthController::class, 'me']);
     Route::get('/getsalesoverview', 'Api\ReportsController@getSalesOverview');
+    Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
+    Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
+    Route::get('/getbestsellers', 'Api\ReportsController@getBestSellers');
+
+    Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
+    Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
+    Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
+    Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');
 
 });
 
@@ -62,11 +70,11 @@ Route::post('/createnewevent', 'Api\NewEventController@createNewEvent');
 Route::post('/createnewticket', 'Api\NewTicketController@createNewTicket');
 
 // Route::get('/getsalesoverview', 'Api\ReportsController@getSalesOverview');
-Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
-Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
-Route::get('/getbestsellers', 'Api\ReportsController@getBestSellers');
+// Route::get('/getsalesdetails', 'Api\ReportsController@getSalesDetails');
+// Route::get('/getbookingdetails', 'Api\ReportsController@getBookingDetails');
+// Route::get('/getbestsellers', 'Api\ReportsController@getBestSellers');
 
-Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
-Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
-Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
-Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');
+// Route::get('/gettrendingevents', 'Api\EventDataController@getTrendingEvents');
+// Route::get('/geteventdata/{id}', 'Api\EventDataController@getEventData');
+// Route::get('/getsportsevents', 'Api\EventDataController@getSportsEvents');
+// Route::get('/getfunevents', 'Api\EventDataController@getFunEvents');

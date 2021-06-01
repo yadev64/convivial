@@ -110,6 +110,7 @@
 
 <script>
 import axios from 'axios'
+const headers = { Authorization: axios.defaults.headers.common.Authorization }
 var url = 'http://localhost:8000/api/geteventdata/'
 
 export default {
@@ -141,7 +142,7 @@ export default {
   },
   mounted () {
     console.log(url + this.event_id)
-    fetch(url + this.event_id)
+    fetch(url + this.event_id, { headers })
       .then(response => response.json())
       .then(data => { this.event_data = data })
       // .then(calculateCost(this.event_data))

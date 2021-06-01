@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+const headers = { Authorization: axios.defaults.headers.common.Authorization }
 const url = 'http://localhost:8000/api/getbestsellers'
 export default {
   data () {
@@ -28,7 +30,7 @@ export default {
     }
   },
   mounted () {
-    fetch(url)
+    fetch(url, { headers })
       .then(response => response.json())
       .then(data => { this.cards = data })
       .catch(error => console.log(error.message))

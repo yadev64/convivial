@@ -35,7 +35,8 @@
 </template>
 
 <script>
-
+import axios from 'axios'
+const headers = { Authorization: axios.defaults.headers.common.Authorization }
 const url = 'http://localhost:8000/api/getsalesdetails'
 
 export default {
@@ -45,7 +46,7 @@ export default {
     }
   },
   mounted () {
-    fetch(url)
+    fetch(url, { headers })
       .then(response => response.json())
       .then(data => { this.report_data = data })
       .catch(error => console.log(error.message))
