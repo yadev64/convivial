@@ -11,6 +11,7 @@ use App\Models\Sale;
 class NewTicketController extends Controller
 {
     public function createNewTicket(Request $request){
+        
         $ticket = new Ticket();
         $customer = new Customer();
 

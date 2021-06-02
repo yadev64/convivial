@@ -35,5 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/createnewticket', 'Api\NewTicketController@createNewTicket');
     Route::post('/createnewevent', 'Api\NewEventController@createNewEvent');
+    Route::put('/editevent/{id}', 'Api\NewEventController@editEvent');
+    Route::delete('/deleteevent/{id}', 'Api\NewEventController@deleteEvent');
 
 });

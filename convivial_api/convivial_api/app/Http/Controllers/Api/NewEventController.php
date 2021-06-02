@@ -52,18 +52,12 @@ class NewEventController extends Controller
         if (Event::where('id', $id)->exists()) {
             $event = Event::find($id);
 
-            // $request->validate([
-            //     'description'=>'required',
-            //     'date'=>'required',
-            //     'location'=>'required',
-            //     'duration'=>'required'
-            // ]);
-
-            echo $request;
+            // echo $request;
             $event->date = is_null($request->date) ? $event->date : $request->date;
             $event->description = is_null($request->description) ? $event->description : $request->description;
             $event->duration = is_null($request->duration) ? $event->duration : $request->duration;
-            $event->location = $request->get('city');
+            $event->location = is_null($request->location) ? $event->location : $request->location;
+            echo $request->location;
             $event->save();
 
             return response()->json([
@@ -75,5 +69,25 @@ class NewEventController extends Controller
                 "message" => "Event not found"
               ], 404);
         }
+    }
+
+    public function deleteEvent($id){
+        $event = Event::find($id);
+        $sale = Sale::where('event_id', $id)->get();
+        $cost = Cost::where('event_id', $id)->get();
+
+        foreach($sale as $s){
+            $s->delete();
+        }
+
+        foreach($cost as $c){
+            $c->delete();
+        }
+
+        $event->delete();
+
+        return response()->json([
+            "message" => "records deleted successfully"
+          ], 200);
     }
 }
