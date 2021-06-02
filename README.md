@@ -156,7 +156,10 @@ On each event card, you can see an icon with a $ symbol in it. It shows the reve
 **Known issues and bugs:**
  - Uploading custom image breaks the api call.
  - The card size in new event page UI breaks when viewed in iPad screen size.
- - User auth based api calls currently unsupported at the UI side. The backend supports it and is working.
+ - ~~Reports page not showing total revenue per event~~ (Fixed)
+ - ~~CORS related issues~~ (Fixed)
+ - ~~Login page scrolls unnecessarily.~~ (Fixed)
+ - ~~User auth based api calls currently unsupported at the UI side. The backend supports it and is working.~~ (Fixed)
  - Form validation is not implemented. Make sure that you enter all the necessary fields.
 
-* Wait for the next update for the bug fixes :)
+*Wait for the next update for more bug fixes and features :)
