@@ -49,11 +49,18 @@ class AuthController extends Controller
                 'message' => 'Invalid username'], 406);
         }
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+        try{
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8',
+            ]);
+        } catch(\Illuminate\Validation\ValidationException $e) {
+        
+            return response()->json([
+                'message' => $e->getMessage()
+            ]);
+        }
 
         // echo json_encode($validatedData);
 

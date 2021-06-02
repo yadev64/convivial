@@ -6,7 +6,11 @@
               <vs-input block
               primary class="form-control"
               v-model="email"
-              placeholder="Email"/>
+              placeholder="Email">
+              <template v-if="email.indexOf('@')<1 && email.length > 0" #message-danger>
+                  Invalid email ID
+              </template>
+              </vs-input>
             </div>
 
             <div class="form-group">
@@ -28,7 +32,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters([
+      'isLogged'
+    ])
+  },
   data () {
     return {
       email: '',
@@ -44,7 +55,11 @@ export default {
           password: this.password
         })
         .then(() => {
-          this.$router.push({ name: 'Dashboard' })
+          if (this.isLogged) {
+            this.$router.push({ name: 'Dashboard' })
+          } else {
+            alert('Invalid login credentials')
+          }
         })
         .catch(err => {
           console.log(err)

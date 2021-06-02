@@ -65,22 +65,6 @@ export default {
       .then(response => response.json())
       .then(data => { this.cards = data })
       .catch(error => console.log(error.message))
-  },
-
-  methods: {
-    handleClick () {
-      this.$store
-        .dispatch('login', {
-          email: this.email,
-          password: this.password
-        })
-        .then(() => {
-          this.$router.push({ name: 'Trending' })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
   }
 }
 </script>

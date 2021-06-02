@@ -31,6 +31,9 @@ export default new Vuex.Store({
         .then(({ data }) => {
           commit('setUserData', data)
         })
+        .catch(error => {
+          console.log(error)
+        })
     },
 
     logout ({ commit }) {
