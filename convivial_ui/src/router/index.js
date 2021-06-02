@@ -53,6 +53,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/NewEvent.vue')
   },
   {
+    path: '/editevent/:id',
+    name: 'EditEvent',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '../views/EditEvent.vue')
+  },
+  {
     path: '/event/:id',
     name: 'Event',
     meta: {

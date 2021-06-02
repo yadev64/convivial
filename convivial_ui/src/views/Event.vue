@@ -22,6 +22,36 @@
                 <p>{{event_data.e_organizer}}</p>
                 <br>
                 <p>{{event_data.e_desc}}</p>
+                <b-row>
+                  <b-col cols=2>
+                    <template>
+                        <div>
+                        <router-link :to="{ name: 'EditEvent', params: { id: event_id } }">
+                        <vs-button
+                            flat block
+                            :active="active == 1"
+                            >
+                            Edit event
+                        </vs-button>
+                        </router-link>
+                        </div>
+                     </template>
+                    </b-col>
+                    <b-col cols=2>
+                      <template>
+                       <div>
+                        <vs-button
+                            border
+                            danger block
+                            type="button"
+                            @click="delete_confirm = true"
+                            >
+                            Delete event
+                        </vs-button>
+                        </div>
+                     </template>
+                    </b-col>
+                </b-row>
               </b-col>
               <b-col cols=5>
                 <form class="purchase-form" @submit.prevent="pushData">
@@ -132,6 +162,47 @@
     </div>
   </template>
 
+    <template>
+    <div class="center">
+      <vs-dialog width="300px" not-center v-model="delete_confirm">
+        <template #header>
+          <h5 class="not-margin">
+            <b>Delete event</b>
+          </h5>
+        </template>
+
+        <img class="delete_popup" src="https://cdn.dribbble.com/users/295355/screenshots/3550054/junkloader.gif" alt="">
+        <h4>Are you sure you want to delete this event?</h4>
+
+        <template #footer>
+          <div class="con-footer">
+            <vs-button type="button" @click="deleteEvent()" danger transparent>
+              Delete
+            </vs-button>
+            <vs-button type="button" @click="delete_confirm = false" dark transparent>
+              Cancel
+            </vs-button>
+          </div>
+        </template>
+      </vs-dialog>
+    </div>
+  </template>
+
+  <template>
+    <div class="center">
+      <vs-dialog blur v-model="delete_dialogue">
+        <template #header>
+          <h4 class="not-margin">
+            Event deleted<b> successfully!</b>
+          </h4>
+        </template>
+        <div>
+            <img class="popup" src="https://cdn.dribbble.com/users/592004/screenshots/2953817/___.gif" alt="">
+        </div>
+      </vs-dialog>
+    </div>
+  </template>
+
   </div>
 
 </template>
@@ -146,6 +217,8 @@ export default {
   data () {
     return {
       active_dialogue: false,
+      delete_dialogue: false,
+      delete_confirm: false,
       event_id: null,
       event_data: [],
       c_name: '',
@@ -183,6 +256,18 @@ export default {
         currentDate = Date.now()
       } while (currentDate - date < milliseconds)
     },
+
+    deleteEvent () {
+      axios.delete('/deleteevent/' + this.event_id)
+        .catch(err => {
+          alert('Hmm..Something went wrong')
+          console.log(err)
+        })
+      this.delete_confirm = false
+      this.delete_dialogue = true
+      setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 3500)
+    },
+
     pushData () {
     //   if(isValid()){
       const content = {
@@ -202,7 +287,7 @@ export default {
           setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
         })
         .catch(err => {
-          alert('Hmm..Something went wrong')
+          alert('All fields are required!')
           console.log(err)
         })
     //   }
@@ -269,6 +354,10 @@ label {
 .popup{
     max-height: 300px;
     max-width: 400px;
+}
+
+.delete_popup{
+    max-height: 275px;
 }
 
 .t-type{

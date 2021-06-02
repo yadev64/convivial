@@ -16,14 +16,13 @@
                 <div
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"
-                @click="selectImage">
+                >
                 </div>
-
-                <b-row>
-                    <b-col cols=4>
+                <!-- Code to upload photo from local. Need to fix how it takes data and convert to url -->
+                <!--<b-row>
+                     <b-col cols=4>
                         <vs-tooltip>
                             <label for="upload-photo"><box-icon name='plus-circle' ></box-icon></label>
-                            <!-- <label for="upload-photo"><p>Upload image</p></label> -->
                             <input
                             ref="fileInput"
                             type="file"
@@ -34,7 +33,7 @@
                             </template>
                         </vs-tooltip>
                     </b-col>
-                </b-row>
+                </b-row> -->
             </div>
 
             <h2>Create new event</h2>
@@ -123,6 +122,20 @@
                         <vs-input block
                         primary class="form-control"
                         v-model="e_location"
+                        />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Cover Image URL</p>
+                </b-col>
+                <b-col cols="8">
+                    <div class="form-group">
+                        <vs-input block
+                        primary class="form-control"
+                        v-model="previewImage"
                         />
                     </div>
                 </b-col>
@@ -329,7 +342,7 @@ export default {
         silver: this.s_price,
         gold: this.g_price,
         platinum: this.p_price,
-        e_image_url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+        e_image_url: this.previewImage
       }
       console.log(content)
       axios.post('/createnewevent', content)
