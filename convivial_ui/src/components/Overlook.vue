@@ -20,9 +20,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-const headers = { Authorization: axios.defaults.headers.common.Authorization }
-const url = 'http://localhost:8000/api/getbestsellers'
+import axios from '../vuexios'
+
 export default {
   data () {
     return {
@@ -30,9 +29,10 @@ export default {
     }
   },
   mounted () {
-    fetch(url, { headers })
-      .then(response => response.json())
-      .then(data => { this.cards = data })
+    axios.get('/getbestsellers')
+      .then((response) => {
+        this.cards = response.data
+      })
       .catch(error => console.log(error.message))
   },
   name: 'Overlook'

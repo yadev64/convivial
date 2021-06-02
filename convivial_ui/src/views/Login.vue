@@ -28,6 +28,20 @@
               </vs-button>
             </div>
           </form>
+        <template>
+          <div class="center">
+            <vs-dialog blur v-model="active_dialogue">
+              <template #header>
+                <h4 class="not-margin">
+                  Successfully<b>logged in!</b>
+                </h4>
+              </template>
+              <div>
+                  <img class="popup" src="https://cdn.dribbble.com/users/39201/screenshots/3694057/nutmeg.gif" alt="">
+              </div>
+            </vs-dialog>
+          </div>
+        </template>
     </div>
 </template>
 
@@ -42,12 +56,20 @@ export default {
   },
   data () {
     return {
+      active_dialogue: false,
       email: '',
       password: ''
     }
   },
 
   methods: {
+    sleep (milliseconds) {
+      const date = Date.now()
+      let currentDate = null
+      do {
+        currentDate = Date.now()
+      } while (currentDate - date < milliseconds)
+    },
     login () {
       this.$store
         .dispatch('login', {
@@ -56,7 +78,8 @@ export default {
         })
         .then(() => {
           if (this.isLogged) {
-            this.$router.push({ name: 'Dashboard' })
+            this.active_dialogue = true
+            setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
           } else {
             alert('Invalid login credentials')
           }
@@ -80,6 +103,11 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.popup{
+  max-height: 300px;
+  max-width: 400px;
 }
 
 .login-form form {

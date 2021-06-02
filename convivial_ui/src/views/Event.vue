@@ -117,13 +117,27 @@
         </div>
       </b-col>
     </b-row>
+  <template>
+    <div class="center">
+      <vs-dialog blur v-model="active_dialogue">
+        <template #header>
+          <h4 class="not-margin">
+            Order placed<b> successfully!</b>
+          </h4>
+        </template>
+        <div>
+            <img class="popup" src="https://cdn.dribbble.com/users/2173054/screenshots/8143107/media/d5e2d1d137f0e7c374d66dd339d9b184.gif" alt="">
+        </div>
+      </vs-dialog>
+    </div>
+  </template>
+
   </div>
+
 </template>
 
 <script>
-import axios from 'axios'
-const headers = { Authorization: axios.defaults.headers.common.Authorization }
-var url = 'http://localhost:8000/api/geteventdata/'
+import axios from '../vuexios'
 
 export default {
   props: {
@@ -131,10 +145,7 @@ export default {
   },
   data () {
     return {
-      n_flag: false,
-      e_flag: false,
-      p_flag: false,
-      valid: false,
+      active_dialogue: false,
       event_id: null,
       event_data: [],
       c_name: '',
@@ -157,24 +168,21 @@ export default {
     this.calculateCost(this.event_data)
   },
   mounted () {
-    console.log(url + this.event_id)
-    fetch(url + this.event_id, { headers })
-      .then(response => response.json())
-      .then(data => { this.event_data = data })
+    axios.get('/geteventdata/' + this.event_id)
+      .then(response => { this.event_data = response.data })
       // .then(calculateCost(this.event_data))
       .catch(error => console.log(error.message))
     this.assignValues(this.event_data)
   },
 
   methods: {
-    // isValid () {
-    //   if(this.n_flag && this.e_flag && this.p_flag){
-    //     this.valid = true
-    //   }
-    //   else{
-    //     this.valid = false
-    //   }
-    // },
+    sleep (milliseconds) {
+      const date = Date.now()
+      let currentDate = null
+      do {
+        currentDate = Date.now()
+      } while (currentDate - date < milliseconds)
+    },
     pushData () {
     //   if(isValid()){
       const content = {
@@ -187,11 +195,11 @@ export default {
         total_cost: this.total_cost
       }
       console.log(content)
-      axios.post('http://localhost:8000/api/createnewticket', content, { headers })
+      axios.post('/createnewticket', content)
         .then(response => { this.message = response.data.message })
         .then(() => {
-          alert('Ticket created successfully')
-          this.$router.push({ name: 'Dashboard' })
+          this.active_dialogue = true
+          setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
         })
         .catch(err => {
           alert('Hmm..Something went wrong')
@@ -256,6 +264,11 @@ label {
    color: blue;
    font-size: 10px;
    margin-left: 10px;
+}
+
+.popup{
+    max-height: 300px;
+    max-width: 400px;
 }
 
 .t-type{

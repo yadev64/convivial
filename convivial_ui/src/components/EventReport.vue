@@ -35,9 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-const headers = { Authorization: axios.defaults.headers.common.Authorization }
-const url = 'http://localhost:8000/api/getsalesdetails'
+import axios from '../vuexios'
 
 export default {
   data () {
@@ -46,9 +44,8 @@ export default {
     }
   },
   mounted () {
-    fetch(url, { headers })
-      .then(response => response.json())
-      .then(data => { this.report_data = data })
+    axios.get('/getsalesdetails')
+      .then(response => { this.report_data = response.data })
       .catch(error => console.log(error.message))
   },
   name: 'EventReport',

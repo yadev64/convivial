@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cost;
 use App\Models\Event;
 use App\Models\Sale;
+use SebastianBergmann\Environment\Console;
 
 class NewEventController extends Controller
 {
@@ -45,5 +46,34 @@ class NewEventController extends Controller
         return response()->json([
             "message" => "Event created"
           ], 201);
+    }
+
+    public function editEvent(Request $request, $id){
+        if (Event::where('id', $id)->exists()) {
+            $event = Event::find($id);
+
+            // $request->validate([
+            //     'description'=>'required',
+            //     'date'=>'required',
+            //     'location'=>'required',
+            //     'duration'=>'required'
+            // ]);
+
+            echo $request;
+            $event->date = is_null($request->date) ? $event->date : $request->date;
+            $event->description = is_null($request->description) ? $event->description : $request->description;
+            $event->duration = is_null($request->duration) ? $event->duration : $request->duration;
+            $event->location = $request->get('city');
+            $event->save();
+
+            return response()->json([
+                "message" => "records updated successfully"
+              ], 200);
+        }
+        else{
+            return response()->json([
+                "message" => "Event not found"
+              ], 404);
+        }
     }
 }

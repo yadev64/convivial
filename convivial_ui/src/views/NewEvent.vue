@@ -273,17 +273,30 @@
 
             </b-col>
         </b-row>
+        <template>
+          <div class="center">
+            <vs-dialog blur v-model="active_dialogue">
+                <template #header>
+                <h4 class="not-margin">
+                    Event created<b> successfully!</b>
+                </h4>
+                </template>
+                <div>
+                    <img class="popup" src="https://cdn.dribbble.com/users/2173054/screenshots/8143107/media/d5e2d1d137f0e7c374d66dd339d9b184.gif" alt="">
+                </div>
+            </vs-dialog>
+            </div>
+        </template>
     </div>
-
 </template>
 
 <script>
-import axios from 'axios'
-const headers = { Authorization: axios.defaults.headers.common.Authorization }
+import axios from '../vuexios'
 
 export default {
   data () {
     return {
+      active_dialogue: false,
       previewImage: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
       e_title: '',
       e_desc: '',
@@ -319,10 +332,11 @@ export default {
         e_image_url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
       }
       console.log(content)
-      axios.post('http://localhost:8000/api/createnewevent', content, { headers })
+      axios.post('/createnewevent', content)
         .then(response => { this.message = response.data.message })
         .then(() => {
-          this.$router.push({ name: 'Dashboard' })
+          this.active_dialogue = true
+          setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
         })
         .catch(err => {
           console.log(err)
@@ -353,6 +367,11 @@ export default {
   background: rgb(233, 245, 255);
   background-size:cover;
   position:relative;
+}
+
+.popup{
+    max-height: 300px;
+    max-width: 400px;
 }
 
 label {
