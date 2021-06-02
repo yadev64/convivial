@@ -35,7 +35,11 @@
                       <vs-input block
                         primary class="form-control"
                         v-model="c_name"
-                        placeholder="Name"/>
+                        placeholder="Name">
+                        <template v-if="c_name.length<3 && c_name.length > 0" #message-danger>
+                            Valid Name Required
+                        </template>
+                        </vs-input>
                     </b-col>
                   </b-row>
                   <b-row>
@@ -43,7 +47,11 @@
                       <vs-input block
                         primary class="form-control"
                         v-model="c_email"
-                        placeholder="Email"/>
+                        placeholder="Email">
+                        <template v-if="c_email.indexOf('@')<1 && c_email.length > 0" #message-danger>
+                            Valid Email Required
+                        </template>
+                      </vs-input>
                     </b-col>
                   </b-row>
                   <b-row>
@@ -52,7 +60,11 @@
                         primary class="form-control"
                         v-model="c_phone"
                         type="number"
-                        placeholder="Phone"/>
+                        placeholder="Phone">
+                        <template v-if="c_phone<1000000 && c_phone != ''" #message-danger>
+                        Valid Phone number required
+                        </template>
+                        </vs-input>
                     </b-col>
                   </b-row>
                   <b-row>
@@ -119,6 +131,10 @@ export default {
   },
   data () {
     return {
+      n_flag: false,
+      e_flag: false,
+      p_flag: false,
+      valid: false,
       event_id: null,
       event_data: [],
       c_name: '',
@@ -151,7 +167,16 @@ export default {
   },
 
   methods: {
+    // isValid () {
+    //   if(this.n_flag && this.e_flag && this.p_flag){
+    //     this.valid = true
+    //   }
+    //   else{
+    //     this.valid = false
+    //   }
+    // },
     pushData () {
+    //   if(isValid()){
       const content = {
         c_name: this.c_name,
         c_email: this.c_email,
@@ -165,11 +190,17 @@ export default {
       axios.post('http://localhost:8000/api/createnewticket', content, { headers })
         .then(response => { this.message = response.data.message })
         .then(() => {
+          alert('Ticket created successfully')
           this.$router.push({ name: 'Dashboard' })
         })
         .catch(err => {
+          alert('Hmm..Something went wrong')
           console.log(err)
         })
+    //   }
+    //   else {
+    //     alert('All fields are required')
+    //   }
     },
 
     assignValues (data) {
