@@ -78,7 +78,7 @@ class NewEventController extends Controller
 
             echo $request;
             $event->date = is_null($request->e_date) ? $event->date : $request->e_date;
-            $event->description = is_null($request->e_description) ? $event->description : $request->e_description;
+            $event->description = is_null($request->e_desc) ? $event->description : $request->e_desc;
             $event->duration = is_null($request->e_duration) ? $event->duration : $request->e_duration;
             $event->location = is_null($request->e_location) ? $event->location : $request->e_location;
             $event->image_title = is_null($request->e_image_url) ? $event->image_title : $request->e_image_url;
