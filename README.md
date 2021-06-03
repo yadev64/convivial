@@ -77,6 +77,10 @@ DB_PASSWORD=                //Your password to access the mySQL DB
  - On VS code, click "ctrl + ~" ("command + ~" for mac users) to bring up the terminal. If you are using a different code editor, just open the root directory of this project in your terminal.
  - Execute the following command to generate all the required database tables:
 ```php artisan migrate```
+
+ - Now let's fill up the tables using the seeds. For this, run:
+
+```php artisan db:seed```
  
  That's it. You have all the necessary parts to run the backend of this project and use all it's api. To run the server, in the terminal, run:
 
@@ -120,6 +124,7 @@ Visit "**[localhost:8080](http://localhost:8080/login)**" and you'll be greated 
 Now, let's discuss the features of this platform and how to use it.
 
 At first, use Postman to call the /register api to create a new user (follow the attached image)
+(Or simply use the default users added in the seeds. Email: **john@gmail.com**, Password: **irisworld**)
 
 ![Screenshot 2021-05-31 at 3 02 33 PM](https://user-images.githubusercontent.com/21107275/120173026-427b0580-c221-11eb-9e2a-33869ee68c70.png)
 
@@ -154,7 +159,7 @@ Go to the **Reports** page to see all the statistics of all the events, revenue 
 On each event card, you can see an icon with a $ symbol in it. It shows the revenue made by that event and the color represents the type of ticket. If its a normal ticket, it will be blue, otherwise, it will be golden in color.
 
 **Known issues and bugs:**
- - Uploading custom image breaks the api call.
+ - ~~Uploading custom image breaks the api call.~~ (Added option to give link to images from the web)
  - The card size in new event page UI breaks when viewed in iPad screen size.
  - ~~Reports page not showing total revenue per event~~ (Fixed)
  - ~~CORS related issues~~ (Fixed)
