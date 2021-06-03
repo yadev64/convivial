@@ -28,6 +28,10 @@
           </template>
           Reports
         </vs-sidebar-item>
+        <!-- :::::::::::::::::::::: -->
+        <!-- Enable the below code while developing new components. It will bring up the temp space (/about) -->
+        <!-- :::::::::::::::::::::: -->
+
         <!-- <vs-sidebar-item id="about" to="/about" v-if="isLogged">
           <template #icon>
             <box-icon name='cookie' ></box-icon>

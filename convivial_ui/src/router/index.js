@@ -10,7 +10,7 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/Dashboard.vue')
+    component: () => import('../views/Dashboard.vue')
   },
   {
     path: '/about',
@@ -18,7 +18,7 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   },
   {
     path: '/login',
@@ -26,31 +26,15 @@ const routes = [
     meta: {
       auth: false
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+    component: () => import('../views/Login.vue')
   },
-  // {
-  //   path: '/event',
-  //   name: 'Event',
-  //   meta: {
-  //     auth: true
-  //   },
-  //   component: () => import(/* webpackChunkName: "login" */ '../views/Event.vue')
-  // },
-  // {
-  //   path: '/dashboard',
-  //   name: 'Dashboard',
-  //   meta: {
-  //     auth: true
-  //   },
-  //   component: () => import(/* webpackChunkName: "login" */ '../views/Dashboard.vue')
-  // },
   {
     path: '/newevent',
     name: 'NewEvent',
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/NewEvent.vue')
+    component: () => import('../views/NewEvent.vue')
   },
   {
     path: '/editevent/:id',
@@ -58,7 +42,7 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/EditEvent.vue')
+    component: () => import('../views/EditEvent.vue')
   },
   {
     path: '/event/:id',
@@ -66,7 +50,7 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/Event.vue')
+    component: () => import('../views/Event.vue')
   },
   {
     path: '/reports',
@@ -74,7 +58,7 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '../views/Reports.vue')
+    component: () => import('../views/Reports.vue')
   }
 ]
 

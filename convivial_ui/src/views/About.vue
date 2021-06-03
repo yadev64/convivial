@@ -1,3 +1,5 @@
+// This view is a temporary space to test components that are under development
+
 <template>
     <div>
         <b-row>

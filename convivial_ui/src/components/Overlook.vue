@@ -1,21 +1,21 @@
 <template>
   <div>
-<b-row>
-          <b-col>
-            <br>
-            <vs-card>
-              <template #title>
-                <h5>Best selling</h5>
-              </template>
-              <template #text>
-                <p>{{cards.best_seller}}</p>
-                <p class="overflow">
-                  Sales: ${{cards.bs_rev}}
-                </p>
-              </template>
-            </vs-card>
-          </b-col>
-        </b-row>
+    <b-row>
+        <b-col>
+        <br>
+        <vs-card>
+            <template #title>
+            <h5>Best selling</h5>
+            </template>
+            <template #text>
+            <p>{{cards.best_seller}}</p>
+            <p class="overflow">
+                Sales: ${{cards.bs_rev}}
+            </p>
+            </template>
+        </vs-card>
+        </b-col>
+    </b-row>
   </div>
 </template>
 

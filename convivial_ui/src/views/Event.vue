@@ -211,9 +211,7 @@
 import axios from '../vuexios'
 
 export default {
-  props: {
-    // event_id: Number
-  },
+  props: { },
   data () {
     return {
       active: 1,
@@ -225,7 +223,6 @@ export default {
       c_name: '',
       c_email: '',
       c_phone: '',
-      // e_duration: 5,
       t_select_type: '0',
       c_t_no: 1,
       n: 0,
@@ -291,10 +288,6 @@ export default {
           alert('All fields are required!')
           console.log(err)
         })
-    //   }
-    //   else {
-    //     alert('All fields are required')
-    //   }
     },
 
     assignValues (data) {

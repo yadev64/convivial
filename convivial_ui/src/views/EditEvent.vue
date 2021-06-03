@@ -141,14 +141,9 @@ import axios from '../vuexios'
 
 export default {
   props: {
-    // event_id: Number
   },
   data () {
     return {
-    //   n_flag: false,
-    //   e_flag: false,
-    //   p_flag: false,
-    //   valid: false,
       active: 1,
       active_dialogue: false,
       event_id: null,
@@ -181,16 +176,7 @@ export default {
   },
 
   methods: {
-    // isValid () {
-    //   if(this.n_flag && this.e_flag && this.p_flag){
-    //     this.valid = true
-    //   }
-    //   else{
-    //     this.valid = false
-    //   }
-    // },
     pushEditData () {
-    //   if(isValid()){
       const content = {
         id: this.event_id,
         e_desc: this.event_data.e_desc,
@@ -219,10 +205,6 @@ export default {
           alert('All fields are required!')
           console.log(err)
         })
-    //   }
-    //   else {
-    //     alert('All fields are required')
-    //   }
     },
 
     assignValues (data) {

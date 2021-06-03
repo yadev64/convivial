@@ -7,18 +7,15 @@
 
             <div>
 
-                <!-- <div v-if="previewImage==null"
-                class="imagePreviewWrapper"
-                :style="{ 'background-image': `url(${default_img})` }"
-                @click="selectImage">
-                </div> -->
-
                 <div
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"
                 >
                 </div>
+                <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
                 <!-- Code to upload photo from local. Need to fix how it takes data and convert to url -->
+                <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
+
                 <!--<b-row>
                      <b-col cols=4>
                         <vs-tooltip>
@@ -48,7 +45,11 @@
                         <vs-input block
                         primary class="form-control"
                         v-model="e_title"
-                        />
+                        >
+                        <template v-if="e_title.length<3 && e_title.length > 0" #message-danger>
+                            Name should be more than 3 letters long
+                        </template>
+                        </vs-input>
                     </div>
                 </b-col>
             </b-row>

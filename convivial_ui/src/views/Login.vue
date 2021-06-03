@@ -12,7 +12,6 @@
               </template>
               </vs-input>
             </div>
-
             <div class="form-group">
               <vs-input block type = password
                 primary class="form-control"
