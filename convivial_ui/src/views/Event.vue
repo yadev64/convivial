@@ -353,12 +353,12 @@ label {
 }
 
 .popup{
-    max-height: 300px;
-    max-width: 400px;
+    max-height: 17em;
+    /* max-width: 400px; */
 }
 
 .delete_popup{
-    max-height: 275px;
+    max-height: 17em;
 }
 
 .t-type{

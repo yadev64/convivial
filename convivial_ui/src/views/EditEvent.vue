@@ -274,6 +274,10 @@ label {
    margin-left: 10px;
 }
 
+.popup{
+    max-height: 17em;
+}
+
 .t-type{
   padding-bottom: 5px;
 }

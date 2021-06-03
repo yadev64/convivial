@@ -106,8 +106,8 @@ export default {
 }
 
 .popup{
-  max-height: 300px;
-  max-width: 400px;
+  max-height: 17em;
+  /* max-width: 400px; */
 }
 
 .login-form form {
