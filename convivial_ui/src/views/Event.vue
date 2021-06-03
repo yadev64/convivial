@@ -216,6 +216,7 @@ export default {
   },
   data () {
     return {
+      active: 1,
       active_dialogue: false,
       delete_dialogue: false,
       delete_confirm: false,

@@ -52,12 +52,13 @@ class NewEventController extends Controller
         if (Event::where('id', $id)->exists()) {
             $event = Event::find($id);
 
-            // echo $request;
+            echo $request;
             $event->date = is_null($request->date) ? $event->date : $request->date;
             $event->description = is_null($request->description) ? $event->description : $request->description;
             $event->duration = is_null($request->duration) ? $event->duration : $request->duration;
             $event->location = is_null($request->location) ? $event->location : $request->location;
-            echo $request->location;
+            $event->image_title = is_null($request->e_image_url) ? $event->image_title : $request->e_image_url;
+            $event->organizer = is_null($request->e_organizer) ? $event->organizer : $request->e_organizer;
             $event->save();
 
             return response()->json([

@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols=12>
         <div class="new-event">
-          <form class="outer-form">
+          <form class="outer-form" @submit.prevent="pushEditData">
 
             <b-row>
               <b-col>
@@ -15,26 +15,129 @@
               </b-col>
             </b-row>
             <b-row>
-              <b-col cols=7>
+              <b-col cols=12>
                 <h2>{{event_data.e_name}}</h2>
-                <p>{{event_data.e_location}}</p>
-                <p>{{event_data.e_date}}</p>
-                <p>{{event_data.e_organizer}}</p>
-                <br>
-                <p>{{event_data.e_desc}}</p>
+                <p>Edit the details of this event</p>
               </b-col>
             </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Organizer</p>
+                </b-col>
+                <b-col cols="8">
+                    <div class="form-group">
+                        <vs-input block
+                        primary class="form-control"
+                        v-model="event_data.e_organizer"
+                        />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Date</p>
+                </b-col>
+                <b-col cols="3">
+                    <div class="form-group">
+                        <vs-input block type="date"
+                        primary class="form-control"
+                        v-model="event_data.e_date"
+                        />
+                    </div>
+                </b-col>
+                <b-col cols="2">
+                    <p class="field-name">Duration</p>
+                </b-col>
+                <b-col cols="3">
+                    <div class="form-group">
+                        <vs-input block type="number"
+                        primary class="form-control"
+                        v-model="event_data.e_duration"
+                        placeholder="Days"
+                        />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Location</p>
+                </b-col>
+                <b-col cols="8">
+                    <div class="form-group">
+                        <vs-input block
+                        primary class="form-control"
+                        v-model="event_data.e_location"
+                        />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">Cover Image URL</p>
+                </b-col>
+                <b-col cols="8">
+                    <div class="form-group">
+                        <vs-input block
+                        primary class="form-control"
+                        v-model="event_data.e_image_url"
+                        />
+                    </div>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col cols="4">
+                    <p class="field-name">More details</p>
+                </b-col>
+                <b-col cols="8">
+                    <div class="form-group">
+                        <b-form-textarea
+                        id="textarea"
+                        v-model="event_data.e_desc"
+                        placeholder="Description about the event..."
+                        rows="3"
+                        max-rows="6"
+                        ></b-form-textarea>
+                    </div>
+                </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <vs-button
+                    block type = "submit"
+                    :active="active == 1"
+                    >
+                    Edit event
+                </vs-button>
+             </b-col>
+           </b-row>
           </form>
         </div>
       </b-col>
     </b-row>
+    <template>
+    <div class="center">
+      <vs-dialog blur v-model="active_dialogue">
+        <template #header>
+          <h4 class="not-margin">
+            Event edited<b> successfully!</b>
+          </h4>
+        </template>
+        <div>
+            <img class="popup" src="https://cdn.dribbble.com/users/2173054/screenshots/8143107/media/d5e2d1d137f0e7c374d66dd339d9b184.gif" alt="">
+        </div>
+      </vs-dialog>
+    </div>
+  </template>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-const headers = { Authorization: axios.defaults.headers.common.Authorization }
-var url = 'http://localhost:8000/api/geteventdata/'
+import axios from '../vuexios'
 
 export default {
   props: {
@@ -46,6 +149,8 @@ export default {
     //   e_flag: false,
     //   p_flag: false,
     //   valid: false,
+      active: 1,
+      active_dialogue: false,
       event_id: null,
       event_data: [],
       c_name: '',
@@ -68,10 +173,8 @@ export default {
     this.calculateCost(this.event_data)
   },
   mounted () {
-    console.log(url + this.event_id)
-    fetch(url + this.event_id, { headers })
-      .then(response => response.json())
-      .then(data => { this.event_data = data })
+    axios.get('/geteventdata/' + this.event_id)
+      .then(response => { this.event_data = response.data })
       // .then(calculateCost(this.event_data))
       .catch(error => console.log(error.message))
     this.assignValues(this.event_data)
@@ -86,23 +189,25 @@ export default {
     //     this.valid = false
     //   }
     // },
-    pushData () {
+    pushEditData () {
     //   if(isValid()){
       const content = {
-        c_name: this.c_name,
-        c_email: this.c_email,
-        c_phone: this.c_phone,
-        event_id: this.event_id,
-        t_type: parseInt(this.t_select_type),
-        no_of_tickets: this.c_t_no,
-        total_cost: this.total_cost
+        e_desc: this.event_data.e_desc,
+        e_organizer: this.event_data.e_organizer,
+        e_location: this.event_data.e_location,
+        e_duration: this.event_data.e_duration,
+        e_date: this.event_data.e_date,
+        e_image_url: this.event_data.e_image_url
       }
       console.log(content)
-      axios.post('http://localhost:8000/api/createnewticket', content, { headers })
-        .then(response => { this.message = response.data.message })
+      axios.put('/editevent/' + this.event_id, content)
+        .then(response => {
+          this.message = response.data.message
+          console.log(this.message)
+        })
         .then(() => {
-          alert('Ticket created successfully')
-          this.$router.push({ name: 'Dashboard' })
+          this.active_dialogue = true
+          setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
         })
         .catch(err => {
           alert('Hmm..Something went wrong')

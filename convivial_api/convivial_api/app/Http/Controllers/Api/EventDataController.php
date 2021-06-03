@@ -120,6 +120,7 @@ class EventDataController extends Controller
             $current_event_data->e_desc = $e->description;
             $current_event_data->e_location = $e->location;
             $current_event_data->e_date = $e->date;
+            $current_event_data->e_duration = $e->duration;
             $current_event_data->e_organizer = $e->organizer;
             $current_event_data->e_catagory = $e->catagory;
             $current_event_data->e_image_url = $e->image_title;
