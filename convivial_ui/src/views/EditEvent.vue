@@ -192,6 +192,7 @@ export default {
     pushEditData () {
     //   if(isValid()){
       const content = {
+        id: this.event_id,
         e_desc: this.event_data.e_desc,
         e_organizer: this.event_data.e_organizer,
         e_location: this.event_data.e_location,
@@ -200,17 +201,22 @@ export default {
         e_image_url: this.event_data.e_image_url
       }
       console.log(content)
-      axios.put('/editevent/' + this.event_id, content)
-        .then(response => {
-          this.message = response.data.message
-          console.log(this.message)
-        })
+      // Using post as PUT is having some issues in Laravel
+      // Refer: https://github.com/laravel/framework/issues/13457
+
+      //   axios.put('/editevent/' + this.event_id, content)
+      //     .then(response => {
+      //       this.message = response.data.message
+      //       console.log(this.message)
+      //     })
+      axios.post('/editeventalt', content)
+        .then(response => { this.message = response.data.message })
         .then(() => {
           this.active_dialogue = true
           setTimeout(() => { this.$router.push({ name: 'Dashboard' }) }, 2000)
         })
         .catch(err => {
-          alert('Hmm..Something went wrong')
+          alert('All fields are required!')
           console.log(err)
         })
     //   }

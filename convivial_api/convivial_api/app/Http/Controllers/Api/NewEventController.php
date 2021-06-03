@@ -72,6 +72,30 @@ class NewEventController extends Controller
         }
     }
 
+    public function editEventAlt(Request $request){
+        if (Event::where('id', $request->id)->exists()) {
+            $event = Event::find($request->id);
+
+            echo $request;
+            $event->date = is_null($request->e_date) ? $event->date : $request->e_date;
+            $event->description = is_null($request->e_description) ? $event->description : $request->e_description;
+            $event->duration = is_null($request->e_duration) ? $event->duration : $request->e_duration;
+            $event->location = is_null($request->e_location) ? $event->location : $request->e_location;
+            $event->image_title = is_null($request->e_image_url) ? $event->image_title : $request->e_image_url;
+            $event->organizer = is_null($request->e_organizer) ? $event->organizer : $request->e_organizer;
+            $event->save();
+
+            return response()->json([
+                "message" => "records updated successfully"
+              ], 200);
+        }
+        else{
+            return response()->json([
+                "message" => "Event not found"
+              ], 404);
+        }
+    }
+
     public function deleteEvent($id){
         $event = Event::find($id);
         $sale = Sale::where('event_id', $id)->get();
