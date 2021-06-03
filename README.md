@@ -7,6 +7,7 @@ Convivial is an event management dashboard for admins, where the user can create
 To try out the platform and build on top of it, clone this repo and read on! This document will provide information regarding installation and usage.
 
 Tech stack:
+
 Backend
  - [Laravel 8](https://laravel.com/)
  - [Sanctum](https://laravel.com/docs/8.x/sanctum) (For authentication)
@@ -18,8 +19,9 @@ Front end
  - [VueX](https://vuex.vuejs.org/) (State management for user authentication)
 
 
+## Demo Video
 
-https://user-images.githubusercontent.com/21107275/120115645-4451b400-c1a2-11eb-97d8-fcf24340fa3a.mp4
+https://user-images.githubusercontent.com/21107275/120630870-dd274e80-c484-11eb-9452-02d9f1cec7c6.mp4
 
 
 
