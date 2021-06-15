@@ -1,6 +1,6 @@
 ![conv@4x](https://user-images.githubusercontent.com/21107275/120108669-e2825180-c183-11eb-9d61-f4f4182e12af.png)
 
-v0.01 alpha
+Current version: v0.02 alpha
 
 Convivial is an event management dashboard for admins, where the user can create events, assign ticket values based on catagory, purchase tickets for customers, see purchase statistics, event performance and more.
 
